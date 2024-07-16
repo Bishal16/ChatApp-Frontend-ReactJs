@@ -1,0 +1,18 @@
+.chat-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc; /* Optional: Add a bottom border */
+}
+
+.header-image {
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    border-radius: 50%; /* Make it circular */
+    margin-right: 10px; /* Space between image and name */
+}
+
+.header-name {
+    font-size: 32px; /* Increase font size as needed */
+    font-weight: bold; /* Optional: Make the name bold for emphasis */
+}

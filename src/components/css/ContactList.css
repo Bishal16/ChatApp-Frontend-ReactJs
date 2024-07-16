@@ -1,0 +1,38 @@
+.contact-list {
+    padding: 0;
+}
+.search-bar {
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 10px; /* Set border radius for rounded corners */
+    padding: 10px; /* Add some padding */
+    width: 90%; /* Full width */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a slight shadow */
+    /* Space below the search bar */
+    margin: 10px 0px 0px 10px;
+}
+
+.search-bar:focus {
+    outline: none; /* Remove the default outline */
+    border-color: #007bff; /* Change border color on focus */
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    /*border-bottom: aqua;*/
+    border-bottom: 1px solid rgba(173, 167, 167, 0.56); /* Add this line for the bottom border */
+
+
+}
+.contact-list .contact-item:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+.contact-image {
+    width: 40px; /* Adjust size as needed */
+    height: 40px; /* Adjust size as needed */
+    border-radius: 50%; /* Make it circular */
+    margin-right: 20px; /* Space between image and name */
+}
