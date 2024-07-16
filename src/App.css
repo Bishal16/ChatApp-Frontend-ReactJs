@@ -8,7 +8,7 @@
   width: 25%;
   border-right: 1px solid #ccc;
   overflow-y: auto;
-  background-color: rgba(230, 231, 231, 0.68);
+  background-color: rgb(234 239 239 / 90%);
   margin: 20px 0px 20px 20px ;
 }
 
@@ -16,16 +16,30 @@
   width: 75%;
   display: flex;
   flex-direction: column;
-  background-color: rgb(255, 255, 255);
+  /*background-color: rgb(255, 255, 255);*/
   margin: 20px 20px 20px 0px ;
+}
+
+.main.no-contact {
+  background-image: url('./resources/photos/bg-chat.jpg'); /* Update the path */
+  background-size: cover;
+  background-position: center;
+}
+
+.main.with-contact {
+  background-color: rgb(255, 255, 255);
 }
 
 .chat-window {
   flex: 1;
   overflow-y: auto;
   padding: 20px;
-  margin-right: 20px;
-  margin-top: 20px;
+  /*margin-right: 20px;*/
+  /*margin-top: 20px;*/
+  background-image: url('./resources/photos/bg-msg.webp'); /* Update the path */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5;
 }
 
 .message-input {
@@ -77,3 +91,23 @@
   height: 60px; /* Optional: Set a fixed height for consistency */
 
 }
+
+
+.placeholder {
+  display: flex;
+  justify-content: center;
+  /*align-items: center;*/
+  height: 100%; /* Full height of the main container */
+  color: #555;
+  text-align: center;
+}
+
+/*.main {*/
+/*  width: 75%;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  background-image: url('./resources/photos/profile.jpeg'); !* Update the path *!*/
+/*  background-size: cover;*/
+/*  background-position: center;*/
+/*  margin: 20px 20px 20px 0;*/
+/*}*/

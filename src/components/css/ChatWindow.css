@@ -1,7 +1,7 @@
 .chat-window {
     flex: 1;
     overflow-y: auto;
-    padding: 20px;
+    /*padding: 20px;*/
 }
 .chat-messages{
     padding: 20px;

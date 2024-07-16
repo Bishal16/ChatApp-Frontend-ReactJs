@@ -55,10 +55,16 @@ const App = () => {
         <div className="sidebar">
           <ContactList contacts={contacts} onSelectContact={handleSelectContact} />
         </div>
-        <div className="main">
-          {selectedContact && <ChatHeader contact={selectedContact} />}
-          <ChatWindow messages={messages} contact={selectedContact} />
-          <MessageInput onSendMessage={handleSendMessage} />
+        <div className={`main ${selectedContact ? 'with-contact' : 'no-contact'}`}>
+          {selectedContact ? (
+              <>
+                <ChatHeader contact={selectedContact} />
+                <ChatWindow messages={messages} contact={selectedContact} />
+                <MessageInput onSendMessage={handleSendMessage} />
+              </>
+          ) : (
+              <div className="placeholder">Select a contact to start chatting</div>
+          )}
         </div>
       </div>
   );
