@@ -1,18 +1,65 @@
-.chat-header {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #ccc; /* Optional: Add a bottom border */
-}
+/*.chat-header {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: space-between;*/
+/*    padding: 10px;*/
+/*    border-bottom: 1px solid #ccc;*/
+/*}*/
 
 .header-image {
-    width: 40px; /* Adjust size as needed */
-    height: 40px; /* Adjust size as needed */
+    width: 70px; /* Adjust size as needed */
+    height: 70px; /* Adjust size as needed */
     border-radius: 50%; /* Make it circular */
-    margin-right: 10px; /* Space between image and name */
+    margin-right: 20px; /* Space between image and name */
+}
+
+.header-details {
+    flex-grow: 1;
 }
 
 .header-name {
     font-size: 32px; /* Increase font size as needed */
     font-weight: bold; /* Optional: Make the name bold for emphasis */
+}
+.status {
+    font-size: 14px;
+    color: green;
+}
+
+.menu-container {
+    position: relative;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.menu {
+    position: absolute;
+    width: 140px;
+    right: 0;
+    top: 30px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.menu li:hover {
+    background-color: #f0f0f0;
 }

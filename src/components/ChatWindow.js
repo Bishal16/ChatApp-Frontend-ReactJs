@@ -1,19 +1,9 @@
 import React from 'react';
 import './css/ChatWindow.css';
 
-const ChatWindow = ({ messages, contact }) => {
+const ChatWindow = ({ messages }) => {
     return (
         <div className="chat-window">
-            <div className="chat-header">
-                {contact ? (
-                    <>
-                        <img src={contact.image} alt={contact.name} className="header-image" />
-                        <span className="header-name">{contact.name}</span>
-                    </>
-                ) : (
-                    <span>Select a contact</span>
-                )}
-            </div>
             <div className="chat-messages">
                 {messages.map((message, index) => (
                     <div key={index} className="message">

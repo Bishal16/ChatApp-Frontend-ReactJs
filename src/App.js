@@ -3,12 +3,12 @@ import './App.css';
 import ContactList from './components/ContactList';
 import ChatWindow from './components/ChatWindow';
 import MessageInput from './components/MessageInput';
+import ChatHeader from './components/ChatHeader';
 
 import profileImage from './resources/photos/profile.jpeg';
 
 const App = () => {
   const contacts = [
-
     { id: 1, name: 'Alice Johnson', image: profileImage },
     { id: 2, name: 'Bob Smith', image: profileImage },
     { id: 3, name: 'Charlie Brown', image: profileImage },
@@ -29,8 +29,8 @@ const App = () => {
     { id: 18, name: 'Ryan Clark', image: profileImage },
     { id: 19, name: 'Sophie Lewis', image: profileImage },
     { id: 20, name: 'Tina Smith', image: profileImage }
-
   ];
+
   const [messages, setMessages] = useState([]);
   const [selectedContact, setSelectedContact] = useState(null);
 
@@ -56,6 +56,7 @@ const App = () => {
           <ContactList contacts={contacts} onSelectContact={handleSelectContact} />
         </div>
         <div className="main">
+          {selectedContact && <ChatHeader contact={selectedContact} />}
           <ChatWindow messages={messages} contact={selectedContact} />
           <MessageInput onSendMessage={handleSendMessage} />
         </div>
