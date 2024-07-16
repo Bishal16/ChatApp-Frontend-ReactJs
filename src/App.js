@@ -31,7 +31,16 @@ const App = () => {
     { id: 20, name: 'Tina Smith', image: profileImage }
   ];
 
-  const [messages, setMessages] = useState([]);
+
+  const [messages, setMessages] = useState([
+    { sender: 'Alice Johnson', text: 'Hi there!', timestamp: Date.now() - 600000 },
+    { sender: 'You', text: 'Hello, Alice!', timestamp: Date.now() - 550000 },
+    { sender: 'Alice Johnson', text: 'How are you?', timestamp: Date.now() - 500000 },
+    { sender: 'You', text: 'I am good, thanks! How about you?', timestamp: Date.now() - 450000 },
+    { sender: 'Alice Johnson', text: 'I am doing well. Thanks for asking!', timestamp: Date.now() - 400000 },
+  ]);
+
+  // const [messages, setMessages] = useState([]);
   const [selectedContact, setSelectedContact] = useState(null);
 
   const handleSelectContact = (contact) => {
@@ -44,6 +53,7 @@ const App = () => {
       const newMessage = {
         sender: 'You',
         text: messageText,
+        timestamp: Date.now(),
       };
       setMessages([...messages, newMessage]);
       // Send the message to the backend
@@ -53,14 +63,15 @@ const App = () => {
   return (
       <div className="app">
         <div className="sidebar">
-          <ContactList contacts={contacts} onSelectContact={handleSelectContact} />
+          <ContactList contacts={contacts} onSelectContact={handleSelectContact}/>
         </div>
+
         <div className={`main ${selectedContact ? 'with-contact' : 'no-contact'}`}>
           {selectedContact ? (
               <>
-                <ChatHeader contact={selectedContact} />
-                <ChatWindow messages={messages} contact={selectedContact} />
-                <MessageInput onSendMessage={handleSendMessage} />
+                <ChatHeader contact={selectedContact}/>
+                <ChatWindow messages={messages} contact={selectedContact}/>
+                <MessageInput onSendMessage={handleSendMessage}/>
               </>
           ) : (
               <div className="placeholder">Select a contact to start chatting</div>

@@ -1,10 +1,12 @@
-/*.chat-header {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: space-between;*/
-/*    padding: 10px;*/
-/*    border-bottom: 1px solid #ccc;*/
-/*}*/
+.chat-header {
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc; /* Optional: Add a bottom border */
+    height: 60px; /* Optional: Set a fixed height for consistency */
+    box-shadow: 1px -1px 9px 7px rgba(0, 0, 0, 0.1)
+}
 
 .header-image {
     width: 70px; /* Adjust size as needed */
@@ -18,7 +20,7 @@
 }
 
 .header-name {
-    font-size: 32px; /* Increase font size as needed */
+    font-size: 18px; /* Increase font size as needed */
     font-weight: bold; /* Optional: Make the name bold for emphasis */
 }
 .status {
