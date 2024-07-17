@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import ContactList from './components/ContactList';
 import ChatWindow from './components/ChatWindow';
-import Placeholder from "./components/Placeholder";
+import Placeholder from "./components/Placeholder-chatWindow";
 import MessageInput from './components/MessageInput';
 import ChatHeader from './components/ChatHeader';
 import Login from './components/Login';

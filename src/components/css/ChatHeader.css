@@ -9,8 +9,8 @@
 }
 
 .header-image {
-    width: 70px; /* Adjust size as needed */
-    height: 70px; /* Adjust size as needed */
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
     border-radius: 50%; /* Make it circular */
     margin-right: 20px; /* Space between image and name */
 }
@@ -21,7 +21,7 @@
 
 .header-name {
     font-size: 18px; /* Increase font size as needed */
-    font-weight: bold; /* Optional: Make the name bold for emphasis */
+    /*font-weight: bold; !* Optional: Make the name bold for emphasis *!*/
 }
 .status {
     font-size: 14px;

@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/Placeholder.css';
+import './css/Placeholder-chatWindow.css';
 
 const Placeholder = () => {
     return (
@@ -24,9 +24,9 @@ const Placeholder = () => {
                     </svg>
                 </div>
                 <div className="placeholder-text">
-                    <h1>Your App Name</h1>
-                    <p>Send and receive messages without keeping your phone online.</p>
-                    <p>Use your app on up to 4 linked devices and 1 phone at the same time.</p>
+                    <h1>Chat App</h1>
+                    <p>Select a contact to see your messages with them</p>
+                    {/*<p>Use your app on up to 4 linked devices and 1 phone at the same time.</p>*/}
                 </div>
             </div>
             <div className="placeholder-footer">
