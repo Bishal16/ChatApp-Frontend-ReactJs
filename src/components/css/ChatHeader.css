@@ -30,6 +30,7 @@
 
 .menu-container {
     position: relative;
+    margin-right: 10px;
 }
 
 .menu-button {

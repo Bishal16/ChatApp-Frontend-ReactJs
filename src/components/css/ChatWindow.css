@@ -1,77 +1,44 @@
 .chat-window {
-    flex: 1;
     display: flex;
     flex-direction: column;
+    padding: 10px;
     overflow-y: auto;
-    /*padding: 20px;*/
-}
-.chat-messages{
-    padding: 20px;
-}
-
-.messages {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    height: calc(100vh - 150px); /* Adjust this value based on your header and input height */
 }
 
 .message {
     display: flex;
     flex-direction: column;
-    max-width: 60%;
     margin-bottom: 10px;
+    max-width: 60%;
     padding: 10px;
     border-radius: 10px;
-    background-color: #f0f0f0;
 }
-
 
 .message.sent {
     align-self: flex-end;
-    background-color: #d5fbd4; /* WhatsApp green */
+    background-color: #dcf8c6;
 }
 
 .message.received {
     align-self: flex-start;
-    background-color: #ffffff;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.message-sender {
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .message-text {
-    font-size: 16px;
-    line-height: 1.4;
+    font-size: 14px;
+    margin-bottom: 5px;
+    word-wrap: break-word;
 }
 
-.message-time {
-    align-self: flex-end;
+.message-timestamp {
     font-size: 12px;
-    color: #888;
-    margin-top: 5px;
-}
-
-.message strong {
-    margin-right: 5px;
-}
-
-.header-image {
-    width: 50px; /* Adjust size as needed */
-    height: 50px; /* Adjust size as needed */
-    border-radius: 50%; /* Make it circular */
-    margin-right: 20px; /* Space between image and name */
-
-}
-
-.header-name {
-    font-size: 22px; /* Increase font size */
-    font-weight: bold; /* Optional: Make the name bold */
-    color: #333; /* Optional: Change color for better visibility */
-}
-
-.placeholder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 250px;
-    height: 100%;
-    color: #555;
-    text-align: center;
+    color: #999;
+    align-self: flex-end;
 }

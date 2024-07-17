@@ -33,13 +33,16 @@ const App = () => {
   ];
 
 
-  const [messages, setMessages] = useState([
-    { sender: 'Alice Johnson', text: 'Hi there!', timestamp: Date.now() - 600000 },
-    { sender: 'You', text: 'Hello, Alice!', timestamp: Date.now() - 550000 },
-    { sender: 'Alice Johnson', text: 'How are you?', timestamp: Date.now() - 500000 },
-    { sender: 'You', text: 'I am good, thanks! How about you?', timestamp: Date.now() - 450000 },
-    { sender: 'Alice Johnson', text: 'I am doing well. Thanks for asking!', timestamp: Date.now() - 400000 },
-  ]);
+  const [messages, setMessages] = useState({
+    1: [
+      { sender: 'Alice Johnson', text: 'Hi there!', timestamp: Date.now() - 600000 },
+      { sender: 'You', text: 'Hello, Alice!', timestamp: Date.now() - 550000 },
+      { sender: 'Alice Johnson', text: 'How are you?', timestamp: Date.now() - 500000 },
+      { sender: 'You', text: 'I am good, thanks! How about you?', timestamp: Date.now() - 450000 },
+      { sender: 'Alice Johnson', text: 'I am doing well. Thanks for asking!', timestamp: Date.now() - 400000 },
+    ],
+    // Add other contacts with their own message histories...
+  });
 
   const [selectedContact, setSelectedContact] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -54,6 +57,7 @@ const App = () => {
     // Load messages for the selected contact from the backend
   };
 
+
   const handleSendMessage = (messageText) => {
     if (selectedContact) {
       const newMessage = {
@@ -61,7 +65,13 @@ const App = () => {
         text: messageText,
         timestamp: Date.now(),
       };
-      setMessages([...messages, newMessage]);
+      setMessages((prevMessages) => {
+        const contactMessages = prevMessages[selectedContact.id] || [];
+        return {
+          ...prevMessages,
+          [selectedContact.id]: [...contactMessages, newMessage],
+        };
+      });
       // Send the message to the backend
     }
   };
