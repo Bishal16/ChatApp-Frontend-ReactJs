@@ -6,7 +6,7 @@ import Placeholder from "./components/Placeholder-chatWindow";
 import MessageInput from './components/MessageInput';
 import ChatHeader from './components/ChatHeader';
 import Login from './components/Login';
-import profileImage from './resources/photos/profile.jpeg';
+import profileImage from './resources/photos/profile.jpg';
 
 const App = () => {
   const contacts = [
