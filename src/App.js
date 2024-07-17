@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import ContactList from './components/ContactList';
 import ChatWindow from './components/ChatWindow';
+import Placeholder from "./components/Placeholder";
 import MessageInput from './components/MessageInput';
 import ChatHeader from './components/ChatHeader';
 import Login from './components/Login';
@@ -70,6 +71,10 @@ const App = () => {
     setIsLoggedIn(true)
   };
 
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setSelectedContact(null);
+  };
 
 
   if (!isLoggedIn) {
@@ -85,12 +90,13 @@ const App = () => {
         <div className={`main ${selectedContact ? 'with-contact' : 'no-contact'}`}>
           {selectedContact ? (
               <>
-                <ChatHeader contact={selectedContact}/>
-                <ChatWindow messages={messages} contact={selectedContact}/>
-                <MessageInput onSendMessage={handleSendMessage}/>
+                <ChatHeader contact={selectedContact} onLogout={handleLogout} />
+                <ChatWindow messages={messages} contact={selectedContact} />
+                <MessageInput onSendMessage={handleSendMessage} />
               </>
           ) : (
-              <div className="placeholder">Select a contact to start chatting</div>
+              // <div className="placeholder">Select a contact to start chatting</div>
+              <div><Placeholder/></div>
           )}
         </div>
       </div>
