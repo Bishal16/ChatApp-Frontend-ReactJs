@@ -24,7 +24,7 @@
 }
 
 .main.no-contact {
-  background-image: url('./resources/photos/bg-chat.jpg'); /* Update the path */
+  background-image: url('resources/photos/bg-chat1.jpg'); /* Update the path */
   background-size: cover;
   background-position: center;
 }
@@ -39,7 +39,7 @@
   padding: 20px;
   /*margin-right: 20px;*/
   /*margin-top: 20px;*/
-  background-image: url('./resources/photos/bg-msg.webp'); /* Update the path */
+  background-image: url('./resources/photos/bg-chat.png'); /* Update the path */
   background-size: cover;
   background-position: center;
   /*opacity: 0.5;*/

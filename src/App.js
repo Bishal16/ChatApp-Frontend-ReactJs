@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import ContactList from './components/ContactList';
 import ChatWindow from './components/ChatWindow';
 import MessageInput from './components/MessageInput';
 import ChatHeader from './components/ChatHeader';
-
+import Login from './components/Login';
 import profileImage from './resources/photos/profile.jpeg';
 
 const App = () => {
@@ -40,8 +40,13 @@ const App = () => {
     { sender: 'Alice Johnson', text: 'I am doing well. Thanks for asking!', timestamp: Date.now() - 400000 },
   ]);
 
-  // const [messages, setMessages] = useState([]);
   const [selectedContact, setSelectedContact] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    setIsLoggedIn(loggedIn);
+  }, []);
 
   const handleSelectContact = (contact) => {
     setSelectedContact(contact);
@@ -59,6 +64,17 @@ const App = () => {
       // Send the message to the backend
     }
   };
+
+  const handleLogin = (user) => {
+    localStorage.setItem('isLoggedIn', 'true');
+    setIsLoggedIn(true)
+  };
+
+
+
+  if (!isLoggedIn) {
+    return <Login onLogin={handleLogin} />;
+  }
 
   return (
       <div className="app">
