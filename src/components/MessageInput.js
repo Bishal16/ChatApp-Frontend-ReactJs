@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import './css/MessageInput.css';
+import axios from 'axios';
 
-const MessageInput = ({ onSendMessage }) => {
+const MessageInput = ({ onSendMessage, senderId, recipientId }) => {
     const [message, setMessage] = useState('');
 
-    const handleSendMessage = () => {
+    const handleSendMessage = async () => {
         if (message.trim()) {
-            onSendMessage(message);
-            setMessage('');
+            try {
+                const response = await axios.post('http://localhost:8080/messages', {
+                    content: message,
+                    senderId: senderId,
+                    recipientId: recipientId
+                });
+                onSendMessage(message);
+                setMessage('');
+            } catch (error) {
+                console.error('Error sending message:', error);
+            }
         }
     };
 

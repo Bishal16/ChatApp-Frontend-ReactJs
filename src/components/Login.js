@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
 import './css/Login.css';
+import { getUserByUsername } from "../api/api";
 
 const Login = ({ onLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        // Mock API call for login validation
-        if (username === 'test' && password === '1111') {
-            onLogin({ username });
-        } else {
-            alert('Invalid credentials');
+        try {
+            const response = await getUserByUsername(username);
+            const user = response.data;
+            console.log(JSON.stringify(user));
+            if (user.password === password) {
+                onLogin({ username: user.username, id: user.id }); // Pass the user ID along with the username
+            } else {
+                setError('Invalid credentials');
+            }
+        } catch (err) {
+            setError('Error logging in');
         }
     };
-
-
 
     return (
         <div className="login-container">
@@ -37,6 +43,7 @@ const Login = ({ onLogin }) => {
                     />
                 </svg>
             </div>
+
             <form onSubmit={handleLogin}>
                 <label>
                     Username:
@@ -54,6 +61,7 @@ const Login = ({ onLogin }) => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </label>
+                {error && <p className="error">{error}</p>}
                 <button type="submit">Login</button>
             </form>
         </div>

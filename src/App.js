@@ -7,6 +7,7 @@ import MessageInput from './components/MessageInput';
 import ChatHeader from './components/ChatHeader';
 import Login from './components/Login';
 import profileImage from './resources/photos/profile.jpg';
+import axios from 'axios';
 
 const App = () => {
   const contacts = [
@@ -44,8 +45,11 @@ const App = () => {
     // Add other contacts with their own message histories...
   });
 
+  // const [messages, setMessages] = useState({});
   const [selectedContact, setSelectedContact] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [user, setUser] = useState(null);
+
 
   useEffect(() => {
     const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -73,12 +77,21 @@ const App = () => {
         };
       });
       // Send the message to the backend
+      // try {
+      //   await axios.post('http://localhost:8080/messages', {
+      //     content: messageText,
+      //     senderId: user.id,
+      //     recipientId: selectedContact.id
+      //   });
+      // } catch (error) {
+      //   console.error('Error sending message:', error);
+      // }
     }
   };
 
   const handleLogin = (user) => {
     localStorage.setItem('isLoggedIn', 'true');
-    setIsLoggedIn(true)
+    setIsLoggedIn(true);
   };
 
   const handleLogout = () => {
@@ -94,7 +107,7 @@ const App = () => {
   return (
       <div className="app">
         <div className="sidebar">
-          <ContactList contacts={contacts} onSelectContact={handleSelectContact}/>
+          <ContactList contacts={contacts} onSelectContact={handleSelectContact} />
         </div>
 
         <div className={`main ${selectedContact ? 'with-contact' : 'no-contact'}`}>
@@ -102,15 +115,17 @@ const App = () => {
               <>
                 <ChatHeader contact={selectedContact} onLogout={handleLogout} />
                 <ChatWindow messages={messages} contact={selectedContact} />
-                <MessageInput onSendMessage={handleSendMessage} />
+                <MessageInput
+                    onSendMessage={handleSendMessage}
+                    senderId={1} // Replace with actual sender ID if needed
+                    recipientId={selectedContact.id}
+                />
               </>
           ) : (
-              // <div className="placeholder">Select a contact to start chatting</div>
-              <div><Placeholder/></div>
+              <div><Placeholder /></div>
           )}
         </div>
       </div>
   );
 };
-
 export default App;
