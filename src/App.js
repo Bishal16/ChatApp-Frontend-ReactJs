@@ -8,102 +8,87 @@ import ChatHeader from './components/ChatHeader';
 import Login from './components/Login';
 import profileImage from './resources/photos/profile.jpg';
 
-import {getAllContact} from './api/api'
+import {getAllContact, getMessages} from './api/api'
 
 const App = () => {
-  //
-  // const [contacts1, setContacts] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
+  const [contacts, setContacts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // var contacts2 = [];
-  // useEffect(() => {
-  //   const fetchContacts = async () => {
-  //     try {
-  //       const response = await getAllContact();
-  //       setContacts(response.data);
-  //       setLoading(false);
-  //
-  //       for(const contactData of response.data) {
-  //         console.log("userid : "+contactData.id);
-  //         console.log("user name : "+contactData.user.username);
-  //         // const contact = {
-  //         //   id:data,
-  //         //   name:response.data.user.username,
-  //         //   image:profileImage,
-  //         // };
-  //
-  //       }
-  //
-  //       // for(const contactData of response.data) {
-  //       //
-  //       //
-  //       //   if(response.hasOwnProperty(key)){
-  //       //     const contact = {
-  //       //       id:response.data.id,
-  //       //       name:response.data.user.username,
-  //       //       image:profileImage,
-  //       //     };
-  //       //
-  //       //     contacts.push(contact);
-  //       //   }
-  //       // }
-  //     } catch (error) {
-  //       setError(error);
-  //       setLoading(false);
-  //     }
-  //   };
-  //
-  //   fetchContacts();
-  // }, []);
-  //
-  //
+  const [messages, setMessages] = useState({});
+  const [selectedContact, setSelectedContact] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
 
-  const contacts = [
-    { id: 1, name: 'Alice Johnson', image: profileImage },
-    { id: 2, name: 'Bob Smith', image: profileImage },
-    { id: 3, name: 'Charlie Brown', image: profileImage },
-    { id: 4, name: 'David Wilson', image: profileImage },
-    { id: 5, name: 'Eva Davis', image: profileImage },
-    { id: 6, name: 'Frank Miller', image: profileImage },
-    { id: 7, name: 'Grace Taylor', image: profileImage },
-    { id: 8, name: 'Hannah Anderson', image: profileImage },
-    { id: 9, name: 'Isaac Thomas', image: profileImage },
-    { id: 10, name: 'Jack Jackson', image: profileImage },
-    { id: 11, name: 'Kathy White', image: profileImage },
-    { id: 12, name: 'Liam Harris', image: profileImage },
-    { id: 13, name: 'Mia Martin', image: profileImage },
-    { id: 14, name: 'Noah Thompson', image: profileImage },
-    { id: 15, name: 'Olivia Garcia', image: profileImage },
-    { id: 16, name: 'Paul Martinez', image: profileImage },
-    { id: 17, name: 'Quinn Robinson', image: profileImage },
-    { id: 18, name: 'Ryan Clark', image: profileImage },
-    { id: 19, name: 'Sophie Lewis', image: profileImage },
-    { id: 20, name: 'Tina Smith', image: profileImage }
-  ];
+  useEffect(() => {
+    const fetchContacts = async () => {
+      try {
+        const response = await getAllContact(localStorage.getItem("userPhoneNumber"));
+
+        const contactData = response.data.map(entry => ({
+          id: entry.contact.phoneNumber,
+          name: entry.contact.firstName + " " + entry.contact.lastName,
+          image: profileImage,
+
+
+        }));
+
+        setContacts(contactData);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
+    fetchContacts();
+  }, []);
+
+
+
+  // const contacts = [
+  //   { id: 1, name: 'Alice Johnson', image: profileImage },
+  //   { id: 2, name: 'Bob Smith', image: profileImage },
+  //   { id: 3, name: 'Charlie Brown', image: profileImage },
+  //   { id: 4, name: 'David Wilson', image: profileImage },
+  //   { id: 5, name: 'Eva Davis', image: profileImage },
+  //   { id: 6, name: 'Frank Miller', image: profileImage },
+  //   { id: 7, name: 'Grace Taylor', image: profileImage },
+  //   { id: 8, name: 'Hannah Anderson', image: profileImage },
+  //   { id: 9, name: 'Isaac Thomas', image: profileImage },
+  //   { id: 10, name: 'Jack Jackson', image: profileImage },
+  //   { id: 11, name: 'Kathy White', image: profileImage },
+  //   { id: 12, name: 'Liam Harris', image: profileImage },
+  //   { id: 13, name: 'Mia Martin', image: profileImage },
+  //   { id: 14, name: 'Noah Thompson', image: profileImage },
+  //   { id: 15, name: 'Olivia Garcia', image: profileImage },
+  //   { id: 16, name: 'Paul Martinez', image: profileImage },
+  //   { id: 17, name: 'Quinn Robinson', image: profileImage },
+  //   { id: 18, name: 'Ryan Clark', image: profileImage },
+  //   { id: 19, name: 'Sophie Lewis', image: profileImage },
+  //   { id: 20, name: 'Tina Smith', image: profileImage }
+  // ];
 
 
 // i want to populate the contacts here from my api
 
-  const [messages, setMessages] =
-      useState(
-          {
-                    1: [
-                      { sender: 'Alice Johnson', text: 'Hi there!', timestamp: Date.now() - 600000 },
-                      { sender: 'You', text: 'Hello, Alice!', timestamp: Date.now() - 550000 },
-                      { sender: 'Alice Johnson', text: 'How are you?', timestamp: Date.now() - 500000 },
-                      { sender: 'You', text: 'I am good, thanks! How about you?', timestamp: Date.now() - 450000 },
-                      { sender: 'Alice Johnson', text: 'I am doing well. Thanks for asking!', timestamp: Date.now() - 400000 },
-
-                    ],
-    // Add other contacts with their own message histories...
-  });
+  // const [messages, setMessages] =
+  //     useState(
+  //         {
+  //                   1: [
+  //                     { sender: 'Alice Johnson', text: 'Hi there!', timestamp: Date.now() - 600000 },
+  //                     { sender: 'You', text: 'Hello, Alice!', timestamp: Date.now() - 550000 },
+  //                     { sender: 'Alice Johnson', text: 'How are you?', timestamp: Date.now() - 500000 },
+  //                     { sender: 'You', text: 'I am good, thanks! How about you?', timestamp: Date.now() - 450000 },
+  //                     { sender: 'Alice Johnson', text: 'I am doing well. Thanks for asking!', timestamp: Date.now() - 400000 },
+  //
+  //                   ],
+  //   // Add other contacts with their own message histories...
+  // });
 
   // const [messages, setMessages] = useState({});
-  const [selectedContact, setSelectedContact] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [selectedContact, setSelectedContact] = useState(null);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const [user, setUser] = useState(null);
 
 
@@ -112,9 +97,22 @@ const App = () => {
     setIsLoggedIn(loggedIn);
   }, []);
 
-  const handleSelectContact = (contact) => {
+  const handleSelectContact = async (contact) => {
     setSelectedContact(contact);
-    // Load messages for the selected contact from the backend
+    try {
+      const response = await getMessages(localStorage.getItem("userPhoneNumber"), contact.id);
+      const formattedMessages = response.data.map(msg => ({
+        sender: msg.sender.phoneNumber === localStorage.getItem("userPhoneNumber") ? 'You' : msg.sender.firstName,
+        text: msg.content,
+        timestamp: msg.timestamp,
+      }));
+      setMessages(prevMessages => ({
+        ...prevMessages,
+        [contact.id]: formattedMessages,
+      }));
+    } catch (error) {
+      console.error('Failed to fetch messages:', error);
+    }
   };
 
 
@@ -132,16 +130,6 @@ const App = () => {
           [selectedContact.id]: [...contactMessages, newMessage],
         };
       });
-      // Send the message to the backend
-      // try {
-      //   await axios.post('http://localhost:8080/messages', {
-      //     content: messageText,
-      //     senderId: user.id,
-      //     recipientId: selectedContact.id
-      //   });
-      // } catch (error) {
-      //   console.error('Error sending message:', error);
-      // }
     }
   };
 
@@ -158,13 +146,13 @@ const App = () => {
   };
 
 
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
-  //
-  // if (error) {
-  //   return <div>Error: {error.message}</div>;
-  // }
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   if (!isLoggedIn) {
     return <Login onLogin={handleLogin} />;

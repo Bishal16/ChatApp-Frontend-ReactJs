@@ -16,10 +16,10 @@ export const getUserByUsername = (username) => apiClient.get(`/users/username/${
 
 // Contact APIs
 export const addContact = (contactData) => apiClient.post('/contacts', contactData);
-export  const getAllContact = () => apiClient.get('/contacts');
+export  const getAllContact = (userPhoneNumber) => apiClient.get(`/contacts/${userPhoneNumber}`);
 
 // Message APIs
 export const sendMessage = (messageData) => apiClient.post('/messages', messageData);
-export const getMessages = (senderId, recipientId) => apiClient.get(`/messages/${senderId}/${recipientId}`);
+export const getMessages = (senderPhoneNumber, recipientPhoneNumber) => apiClient.get(`/messages/${senderPhoneNumber}/${recipientPhoneNumber}`);
 
 export default apiClient;
