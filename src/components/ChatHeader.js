@@ -16,7 +16,7 @@ const ChatHeader = ({ contact, onLogout }) => {
     };
 
     useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside);
+            document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
@@ -24,6 +24,7 @@ const ChatHeader = ({ contact, onLogout }) => {
 
     const handleLogout = () => {
         localStorage.setItem('isLoggedIn', 'false');
+        localStorage.setItem('userPhoneNumber', 'null');
         onLogout();
     };
 

@@ -16,6 +16,7 @@ export const getUserByUsername = (username) => apiClient.get(`/users/username/${
 
 // Contact APIs
 export const addContact = (contactData) => apiClient.post('/contacts', contactData);
+export  const getAllContact = () => apiClient.get('/contacts');
 
 // Message APIs
 export const sendMessage = (messageData) => apiClient.post('/messages', messageData);

@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import './css/MessageInput.css';
 import axios from 'axios';
+import {sendMessage} from '../api/api'
 
-const MessageInput = ({ onSendMessage, senderId, recipientId }) => {
+const MessageInput = ({ onSendMessage, senderPhoneNumber, recipientPhoneNumber }) => {
     const [message, setMessage] = useState('');
 
     const handleSendMessage = async () => {
         if (message.trim()) {
+            const messageData = {
+                senderPhoneNumber: senderPhoneNumber,
+                recipientPhoneNumber: recipientPhoneNumber,
+                content: message,
+            }
             try {
-                const response = await axios.post('http://localhost:8080/messages', {
-                    content: message,
-                    senderId: senderId,
-                    recipientId: recipientId
-                });
+                const response = await sendMessage(messageData);
+
                 onSendMessage(message);
                 setMessage('');
             } catch (error) {
@@ -21,7 +24,7 @@ const MessageInput = ({ onSendMessage, senderId, recipientId }) => {
         }
     };
 
-    const handleKeyPress = (e) => {
+        const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             handleSendMessage();
         }

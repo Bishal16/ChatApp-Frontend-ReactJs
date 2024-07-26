@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './css/Login.css';
-import { getUserByUsername } from "../api/api";
+import {getUserById,} from "../api/api";
 
 const Login = ({ onLogin }) => {
     const [username, setUsername] = useState('');
@@ -10,11 +10,11 @@ const Login = ({ onLogin }) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await getUserByUsername(username);
+            const response = await getUserById(username);
             const user = response.data;
             console.log(JSON.stringify(user));
             if (user.password === password) {
-                onLogin({ username: user.username, id: user.id }); // Pass the user ID along with the username
+                onLogin({ username: user.username, phoneNumber: user.phoneNumber }); // Pass the user ID along with the username
             } else {
                 setError('Invalid credentials');
             }

@@ -7,9 +7,60 @@ import MessageInput from './components/MessageInput';
 import ChatHeader from './components/ChatHeader';
 import Login from './components/Login';
 import profileImage from './resources/photos/profile.jpg';
-import axios from 'axios';
+
+import {getAllContact} from './api/api'
 
 const App = () => {
+  //
+  // const [contacts1, setContacts] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
+
+  // var contacts2 = [];
+  // useEffect(() => {
+  //   const fetchContacts = async () => {
+  //     try {
+  //       const response = await getAllContact();
+  //       setContacts(response.data);
+  //       setLoading(false);
+  //
+  //       for(const contactData of response.data) {
+  //         console.log("userid : "+contactData.id);
+  //         console.log("user name : "+contactData.user.username);
+  //         // const contact = {
+  //         //   id:data,
+  //         //   name:response.data.user.username,
+  //         //   image:profileImage,
+  //         // };
+  //
+  //       }
+  //
+  //       // for(const contactData of response.data) {
+  //       //
+  //       //
+  //       //   if(response.hasOwnProperty(key)){
+  //       //     const contact = {
+  //       //       id:response.data.id,
+  //       //       name:response.data.user.username,
+  //       //       image:profileImage,
+  //       //     };
+  //       //
+  //       //     contacts.push(contact);
+  //       //   }
+  //       // }
+  //     } catch (error) {
+  //       setError(error);
+  //       setLoading(false);
+  //     }
+  //   };
+  //
+  //   fetchContacts();
+  // }, []);
+  //
+  //
+
+
+
   const contacts = [
     { id: 1, name: 'Alice Johnson', image: profileImage },
     { id: 2, name: 'Bob Smith', image: profileImage },
@@ -34,14 +85,19 @@ const App = () => {
   ];
 
 
-  const [messages, setMessages] = useState({
-    1: [
-      { sender: 'Alice Johnson', text: 'Hi there!', timestamp: Date.now() - 600000 },
-      { sender: 'You', text: 'Hello, Alice!', timestamp: Date.now() - 550000 },
-      { sender: 'Alice Johnson', text: 'How are you?', timestamp: Date.now() - 500000 },
-      { sender: 'You', text: 'I am good, thanks! How about you?', timestamp: Date.now() - 450000 },
-      { sender: 'Alice Johnson', text: 'I am doing well. Thanks for asking!', timestamp: Date.now() - 400000 },
-    ],
+// i want to populate the contacts here from my api
+
+  const [messages, setMessages] =
+      useState(
+          {
+                    1: [
+                      { sender: 'Alice Johnson', text: 'Hi there!', timestamp: Date.now() - 600000 },
+                      { sender: 'You', text: 'Hello, Alice!', timestamp: Date.now() - 550000 },
+                      { sender: 'Alice Johnson', text: 'How are you?', timestamp: Date.now() - 500000 },
+                      { sender: 'You', text: 'I am good, thanks! How about you?', timestamp: Date.now() - 450000 },
+                      { sender: 'Alice Johnson', text: 'I am doing well. Thanks for asking!', timestamp: Date.now() - 400000 },
+
+                    ],
     // Add other contacts with their own message histories...
   });
 
@@ -90,7 +146,9 @@ const App = () => {
   };
 
   const handleLogin = (user) => {
+    console.log(user);
     localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('userPhoneNumber',user.phoneNumber)
     setIsLoggedIn(true);
   };
 
@@ -99,6 +157,14 @@ const App = () => {
     setSelectedContact(null);
   };
 
+
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
+  //
+  // if (error) {
+  //   return <div>Error: {error.message}</div>;
+  // }
 
   if (!isLoggedIn) {
     return <Login onLogin={handleLogin} />;
@@ -117,8 +183,8 @@ const App = () => {
                 <ChatWindow messages={messages} contact={selectedContact} />
                 <MessageInput
                     onSendMessage={handleSendMessage}
-                    senderId={1} // Replace with actual sender ID if needed
-                    recipientId={selectedContact.id}
+                    senderPhoneNumber={localStorage.getItem("userPhoneNumber")} // Replace with actual sender ID if needed
+                    recipientPhoneNumber={selectedContact.id}
                 />
               </>
           ) : (
