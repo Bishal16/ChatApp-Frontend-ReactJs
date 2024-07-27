@@ -1,4 +1,4 @@
-/*this is mu App.css file*/
+/* App.css file */
 
 .app {
   display: flex;
@@ -6,7 +6,6 @@
   /*background-color: rgb(0, 167, 132);*/
   height: 100vh; /* Full height */
   background: linear-gradient(to bottom, #00a683 13%, #e2e0dc 13% 100%);
-
 }
 
 .sidebar {
@@ -14,7 +13,16 @@
   border-right: 1px solid #ccc;
   overflow-y: auto;
   background-color: rgb(253, 253, 253);
-  margin: 20px 0px 20px 110px ;
+  margin: 20px 0px 20px 110px; /* Default left margin */
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+@media (max-width: 1300px) {
+  .sidebar {
+    margin: 20px 0px 20px 0px; /* Reduced left margin */
+    width: 30%;
+  }
 }
 
 .main {
@@ -22,7 +30,14 @@
   display: flex;
   flex-direction: column;
   background-color: rgb(255, 255, 255);
-  margin: 20px 110px 20px 0px ;
+  margin: 20px 110px 20px 0px;
+}
+
+@media (max-width: 1300px) {
+  .main {
+    margin: 20px 0px 20px 0px; /* Reduced left margin */
+    width: 70%;
+  }
 }
 
 .main.no-contact {
@@ -88,31 +103,46 @@
 }
 
 
-/*.chat-header {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*  padding: 10px;*/
-/*  border-bottom: 1px solid #ccc; !* Optional: Add a bottom border *!*/
-/*  height: 60px; !* Optional: Set a fixed height for consistency *!*/
-/*  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
-/*}*/
 
 
-/*.placeholder {*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*  !*align-items: center;*!*/
-/*  height: 100%; !* Full height of the main container *!*/
-/*  color: #555;*/
-/*  text-align: center;*/
+/*--------------------------------Just for side bar--------------------------*/
+/* Custom scrollbar for Firefox */
+.chat-window {
+  scrollbar-width: thin; /* Makes the scrollbar thin */
+  scrollbar-color: #d9dcdb #f5f5f5; /* Thumb color and track color */
+}
+
+.sidebar {
+  scrollbar-width: thin; /* Makes the scrollbar thin */
+  scrollbar-color: #d9dcdb #f5f5f5; /* Thumb color and track color */
+}
+
+/*!* Custom scrollbar for WebKit browsers *!*/
+/*.chat-window::-webkit-scrollbar {*/
+/*  width: 8px; !* Width of the scrollbar *!*/
 /*}*/
 
-/*.main {*/
-/*  width: 75%;*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  background-image: url('./resources/photos/profile.jpeg'); !* Update the path *!*/
-/*  background-size: cover;*/
-/*  background-position: center;*/
-/*  margin: 20px 20px 20px 0;*/
+/*.chat-window::-webkit-scrollbar-thumb {*/
+/*  background-color: #00a583; !* Color of the scrollbar thumb *!*/
+/*  border-radius: 10px; !* Rounded corners *!*/
 /*}*/
+
+/*.chat-window::-webkit-scrollbar-track {*/
+/*  background-color: #f5f5f5; !* Background color of the track *!*/
+/*  border-radius: 10px; !* Rounded corners *!*/
+/*}*/
+
+/*.sidebar::-webkit-scrollbar {*/
+/*  width: 8px; !* Width of the scrollbar *!*/
+/*}*/
+
+/*.sidebar::-webkit-scrollbar-thumb {*/
+/*  background-color: #00a583; !* Color of the scrollbar thumb *!*/
+/*  border-radius: 10px; !* Rounded corners *!*/
+/*}*/
+
+/*.sidebar::-webkit-scrollbar-track {*/
+/*  background-color: #f5f5f5; !* Background color of the track *!*/
+/*  border-radius: 10px; !* Rounded corners *!*/
+/*}*/
+

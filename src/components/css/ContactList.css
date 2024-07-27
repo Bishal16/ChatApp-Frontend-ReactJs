@@ -1,37 +1,48 @@
 .contact-list {
     padding: 0;
 }
+
 .search-bar {
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 10px;
     width: 90%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 10px 0px 0px 10px;
+    margin: 10px; /* Equal margin on all sides */
     background-color: rgba(234, 231, 231, 0.77);
 }
 
-.search-bar:focus {
-    outline: none;
-    border-color: #009576;
-}
 
 .contact-item {
     display: flex;
     align-items: center;
     padding: 10px;
     cursor: pointer;
-    border-bottom: 1px solid rgba(213, 210, 210, 0.56);
-
-    margin: 0 10px;
+    border-bottom: 1px solid #ddd;
 }
-.contact-list .contact-item:hover {
-    background-color: rgb(238, 240, 243);
+
+.contact-item.selected {
+    background-color: #f0f0f0;
 }
 
 .contact-image {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin-right: 20px;
+    margin-right: 10px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-name {
+    /*font-weight: bold;*/
+}
+
+.contact-phone{
+    font-size: 13px;
+    color: #787878;
+    margin-top: 2px;
 }

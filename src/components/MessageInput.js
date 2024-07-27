@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './css/MessageInput.css';
 import axios from 'axios';
 import {sendMessage} from '../api/api'
+import sendButtonImage from '../resources/photos/send-button.png'
 
 const MessageInput = ({ onSendMessage, senderPhoneNumber, recipientPhoneNumber }) => {
     const [message, setMessage] = useState('');
@@ -39,7 +40,10 @@ const MessageInput = ({ onSendMessage, senderPhoneNumber, recipientPhoneNumber }
                 onKeyPress={handleKeyPress}
                 placeholder="Type a message..."
             />
-            <button onClick={handleSendMessage}>Send</button>
+            {/*<button onClick={handleSendMessage}>Send</button>*/}
+            <button onClick={handleSendMessage} className="send-button">
+                <img src= {sendButtonImage} alt="Send"/>
+            </button>
         </div>
     );
 };

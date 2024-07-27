@@ -5,7 +5,7 @@
     padding: 10px;
     border-bottom: 1px solid #ccc; /* Optional: Add a bottom border */
     height: 60px; /* Optional: Set a fixed height for consistency */
-    box-shadow: 1px -1px 9px 7px rgba(0, 0, 0, 0.1)
+    box-shadow: 0px 7px 9px 0px rgba(0, 0, 0, 0.1);
 }
 
 .header-image {
