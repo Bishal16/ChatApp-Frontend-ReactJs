@@ -13,6 +13,7 @@ const apiClient = axios.create({
 export const createUser = (userData) => apiClient.post('/users', userData);
 export const getUserById = (id) => apiClient.get(`/users/${id}`);
 export const getUserByUsername = (username) => apiClient.get(`/users/username/${username}`);
+// export const getUserProfilePhoto = () => apiClient.get(`/uploads/profile_photo/');
 
 // Contact APIs
 export const addContact = (contactData) => apiClient.post('/contacts', contactData);

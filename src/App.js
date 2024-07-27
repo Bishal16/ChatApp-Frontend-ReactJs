@@ -6,7 +6,8 @@ import Placeholder from "./components/Placeholder-chatWindow";
 import MessageInput from './components/MessageInput';
 import ChatHeader from './components/ChatHeader';
 import Login from './components/Login';
-import profileImage from './resources/photos/profile.jpg';
+ import profileImage from './resources/photos/profile.jpg';
+// import profileImage1 from '/home/mahathir/Downloads/projects/chatapp_springboot/src/main/resources/static/uploads/profile_photo/pp-01747424468.jpeg';
 
 import {getAllContact, getMessages} from './api/api'
 
@@ -29,7 +30,7 @@ const App = () => {
         const contactData = response.data.map(entry => ({
           id: entry.contact.phoneNumber,
           name: entry.contact.firstName + " " + entry.contact.lastName,
-          image: profileImage,
+          image: entry.contact.imageUrl || profileImage,
 
 
         }));
