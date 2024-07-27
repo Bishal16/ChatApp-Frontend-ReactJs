@@ -20,7 +20,6 @@ const Placeholder = () => {
                 <div className="placeholder-text">
                     <h1>Chat App</h1>
                     <p>Select a contact to see your messages with them</p>
-                    {/*<p>Use your app on up to 4 linked devices and 1 phone at the same time.</p>*/}
                 </div>
             </div>
             <div className="placeholder-footer">

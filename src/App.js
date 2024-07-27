@@ -7,7 +7,6 @@ import MessageInput from './components/MessageInput';
 import ChatHeader from './components/ChatHeader';
 import Login from './components/Login';
  import profileImage from './resources/photos/profile.jpg';
-// import profileImage1 from '/home/mahathir/Downloads/projects/chatapp_springboot/src/main/resources/static/uploads/profile_photo/pp-01747424468.jpeg';
 
 import {getAllContact, getMessages} from './api/api'
 
@@ -45,52 +44,6 @@ const App = () => {
     fetchContacts();
   }, []);
 
-
-
-  // const contacts = [
-  //   { id: 1, name: 'Alice Johnson', image: profileImage },
-  //   { id: 2, name: 'Bob Smith', image: profileImage },
-  //   { id: 3, name: 'Charlie Brown', image: profileImage },
-  //   { id: 4, name: 'David Wilson', image: profileImage },
-  //   { id: 5, name: 'Eva Davis', image: profileImage },
-  //   { id: 6, name: 'Frank Miller', image: profileImage },
-  //   { id: 7, name: 'Grace Taylor', image: profileImage },
-  //   { id: 8, name: 'Hannah Anderson', image: profileImage },
-  //   { id: 9, name: 'Isaac Thomas', image: profileImage },
-  //   { id: 10, name: 'Jack Jackson', image: profileImage },
-  //   { id: 11, name: 'Kathy White', image: profileImage },
-  //   { id: 12, name: 'Liam Harris', image: profileImage },
-  //   { id: 13, name: 'Mia Martin', image: profileImage },
-  //   { id: 14, name: 'Noah Thompson', image: profileImage },
-  //   { id: 15, name: 'Olivia Garcia', image: profileImage },
-  //   { id: 16, name: 'Paul Martinez', image: profileImage },
-  //   { id: 17, name: 'Quinn Robinson', image: profileImage },
-  //   { id: 18, name: 'Ryan Clark', image: profileImage },
-  //   { id: 19, name: 'Sophie Lewis', image: profileImage },
-  //   { id: 20, name: 'Tina Smith', image: profileImage }
-  // ];
-
-
-// i want to populate the contacts here from my api
-
-  // const [messages, setMessages] =
-  //     useState(
-  //         {
-  //                   1: [
-  //                     { sender: 'Alice Johnson', text: 'Hi there!', timestamp: Date.now() - 600000 },
-  //                     { sender: 'You', text: 'Hello, Alice!', timestamp: Date.now() - 550000 },
-  //                     { sender: 'Alice Johnson', text: 'How are you?', timestamp: Date.now() - 500000 },
-  //                     { sender: 'You', text: 'I am good, thanks! How about you?', timestamp: Date.now() - 450000 },
-  //                     { sender: 'Alice Johnson', text: 'I am doing well. Thanks for asking!', timestamp: Date.now() - 400000 },
-  //
-  //                   ],
-  //   // Add other contacts with their own message histories...
-  // });
-
-  // const [messages, setMessages] = useState({});
-  // const [selectedContact, setSelectedContact] = useState(null);
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [user, setUser] = useState(null);
 
 
   useEffect(() => {
@@ -172,7 +125,7 @@ const App = () => {
                 <ChatWindow messages={messages} contact={selectedContact} />
                 <MessageInput
                     onSendMessage={handleSendMessage}
-                    senderPhoneNumber={localStorage.getItem("userPhoneNumber")} // Replace with actual sender ID if needed
+                    senderPhoneNumber={localStorage.getItem("userPhoneNumber")}
                     recipientPhoneNumber={selectedContact.id}
                 />
               </>

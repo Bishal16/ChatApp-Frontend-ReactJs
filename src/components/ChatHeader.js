@@ -42,9 +42,8 @@ const ChatHeader = ({ contact, onLogout }) => {
                 {showMenu && (
                     <div className="menu">
                         <ul>
-                            {/*<li>Option 1</li>*/}
-                            {/*<li>Option 2</li>*/}
-                            <li onClick={handleLogout}>Logout</li> {/* Added Logout option */}
+                            <li onClick={handleLogout}>Logout</li>
+                            <li >{localStorage.userPhoneNumber}</li>
                         </ul>
                     </div>
                 )}

@@ -13,14 +13,14 @@
   border-right: 1px solid #ccc;
   overflow-y: auto;
   background-color: rgb(253, 253, 253);
-  margin: 20px 0px 20px 110px; /* Default left margin */
+  margin: 20px 0px 20px 110px;
   padding-left: 10px;
   padding-right: 10px;
 }
 
 @media (max-width: 1300px) {
   .sidebar {
-    margin: 20px 0px 20px 0px; /* Reduced left margin */
+    margin: 20px 0px 20px 0px;
     width: 30%;
   }
 }
@@ -35,7 +35,7 @@
 
 @media (max-width: 1300px) {
   .main {
-    margin: 20px 0px 20px 0px; /* Reduced left margin */
+    margin: 20px 0px 20px 0px;
     width: 70%;
   }
 }
@@ -55,7 +55,7 @@
   padding: 20px;
   /*margin-right: 20px;*/
   /*margin-top: 20px;*/
-  background-image: url('./resources/photos/bg-chat.png'); /* Update the path */
+  background-image: url('./resources/photos/bg-chat.png');
   background-size: cover;
   background-position: center;
   /*opacity: 0.5;*/
@@ -104,7 +104,7 @@
 
 
 
-/*--------------------------------Just for side bar--------------------------*/
+/*--------------------------------Just for scroll bar look--------------------------*/
 /* Custom scrollbar for Firefox */
 .chat-window {
   scrollbar-width: thin; /* Makes the scrollbar thin */
