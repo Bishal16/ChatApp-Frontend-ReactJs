@@ -7,9 +7,17 @@
     background-color: rgb(0, 167, 132);
 }
 
-.login-svg {
+.Login-svg {
     margin-bottom: 70px;
     margin-top: -70px;
+}
+
+.login-image svg {
+    width: 150px;
+    height: 150px;
+}
+.login-image{
+    margin-bottom:80px;
 }
 
 .login-container form {
