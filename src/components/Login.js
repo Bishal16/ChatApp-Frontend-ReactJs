@@ -1,11 +1,14 @@
+//Login.js
 import React, { useState } from 'react';
 import './css/Login.css';
 import {getUserById,} from "../api/api";
+import Signup from "./signup";
 
 const Login = ({ onLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [showSignup, setShowSignup] = useState(false);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -36,26 +39,31 @@ const Login = ({ onLogin }) => {
                 </svg>
             </div>
 
-            <form onSubmit={handleLogin}>
-                <label>
-                    Username:
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                </label>
-                <label>
-                    Password:
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </label>
-                {error && <p className="error">{error}</p>}
-                <button type="submit">Login</button>
-            </form>
+            {showSignup ? (
+                <Signup onSignup={() => setShowSignup(false)} />
+            ) : (
+                <form onSubmit={handleLogin}>
+                    <label>
+                        Phone Number:
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        Password:
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </label>
+                    {error && <p className="error">{error}</p>}
+                    <button type="submit">Login</button>
+                    <button type="button" onClick={() => setShowSignup(true)}>Signup</button>
+                </form>
+                )}
         </div>
     );
 };
