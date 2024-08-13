@@ -14,8 +14,8 @@
   overflow-y: auto;
   background-color: rgb(253, 253, 253);
   margin: 20px 0px 20px 110px;
-  padding-left: 10px;
-  padding-right: 10px;
+  /*padding-left: 10px;*/
+  /*padding-right: 10px;*/
 }
 
 @media (max-width: 1300px) {
@@ -85,7 +85,7 @@
 }
 
 .contact-list .contact-item {
-  padding: 10px;
+  /*padding: 10px;*/
   cursor: pointer;
 }
 

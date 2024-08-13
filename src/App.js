@@ -1,39 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import ContactList from './components/ContactList';
+import Sidebar from "./components/sidebar/Sidebar";
+import ContactList from './components/sidebar/ContactList';
 import ChatWindow from './components/ChatWindow';
 import Placeholder from "./components/Placeholder-chatWindow";
 import MessageInput from './components/MessageInput';
 import ChatHeader from './components/ChatHeader';
 import Login from './components/Login';
- import profileImage from './resources/photos/profile.jpg';
-
+import profileImage from './resources/photos/profile.jpg';
 import {getAllContact, getMessages} from './api/api'
+
 
 const App = () => {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const [messages, setMessages] = useState({});
   const [selectedContact, setSelectedContact] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-
 
   useEffect(() => {
     const fetchContacts = async () => {
       try {
         const response = await getAllContact(localStorage.getItem("userPhoneNumber"));
-
         const contactData = response.data.map(entry => ({
           id: entry.contact.phoneNumber,
           name: entry.contact.firstName + " " + entry.contact.lastName,
           image: entry.contact.imageUrl || profileImage,
-
-
         }));
-
         setContacts(contactData);
         setLoading(false);
       } catch (error) {
@@ -43,8 +37,6 @@ const App = () => {
     };
     fetchContacts();
   }, []);
-
-
 
   useEffect(() => {
     const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -69,7 +61,6 @@ const App = () => {
     }
   };
 
-
   const handleSendMessage = (messageText) => {
     if (selectedContact) {
       const newMessage = {
@@ -90,7 +81,7 @@ const App = () => {
   const handleLogin = (user) => {
     console.log(user);
     localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('userPhoneNumber',user.phoneNumber)
+    localStorage.setItem('userPhoneNumber', user.phoneNumber);
     setIsLoggedIn(true);
   };
 
@@ -98,7 +89,6 @@ const App = () => {
     setIsLoggedIn(false);
     setSelectedContact(null);
   };
-
 
   if (loading) {
     return <div>Loading...</div>;
@@ -114,15 +104,15 @@ const App = () => {
 
   return (
       <div className="app">
-        <div className="sidebar">
-          <ContactList contacts={contacts} onSelectContact={handleSelectContact} />
-        </div>
-
+        {/*<div className="sidebar">*/}
+        {/*  <ContactList contacts={contacts} onSelectContact={handleSelectContact}/>*/}
+        {/*</div>*/}
+        <Sidebar contacts={contacts} onSelectContact={handleSelectContact}/>
         <div className={`main ${selectedContact ? 'with-contact' : 'no-contact'}`}>
           {selectedContact ? (
               <>
-                <ChatHeader contact={selectedContact} onLogout={handleLogout} />
-                <ChatWindow messages={messages} contact={selectedContact} />
+                <ChatHeader contact={selectedContact} onLogout={handleLogout}/>
+                <ChatWindow messages={messages} contact={selectedContact}/>
                 <MessageInput
                     onSendMessage={handleSendMessage}
                     senderPhoneNumber={localStorage.getItem("userPhoneNumber")}
@@ -130,10 +120,11 @@ const App = () => {
                 />
               </>
           ) : (
-              <div><Placeholder /></div>
+              <div><Placeholder/></div>
           )}
         </div>
       </div>
   );
 };
+
 export default App;

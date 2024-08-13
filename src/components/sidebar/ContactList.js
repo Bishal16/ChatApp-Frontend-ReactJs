@@ -1,5 +1,5 @@
 import React , { useState } from 'react';
-import './css/ContactList.css';
+import '../css/sidebar/ContactList.css';
 
 const ContactList = ({ contacts, onSelectContact }) => {
     const [searchTerm, setSearchTerm] = useState('');
