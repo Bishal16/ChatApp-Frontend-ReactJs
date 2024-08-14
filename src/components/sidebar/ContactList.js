@@ -1,7 +1,34 @@
-import React , { useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import '../css/sidebar/ContactList.css';
+import addContactIcon from '../../resources/icons/icon-addContact.png'
 
-const ContactList = ({ contacts, onSelectContact }) => {
+const ContactList = ({ contacts, onSelectContact, onLogout }) => {
+    const [showMenu, setShowMenu] = useState(false);
+    const menuRef = useRef(null);
+
+    const toggleMenu = () => {
+        setShowMenu(!showMenu);
+    };
+
+    const handleClickOutside = (event) => {
+        if (menuRef.current && !menuRef.current.contains(event.target)) {
+            setShowMenu(false);
+        }
+    };
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.setItem('isLoggedIn', 'false');
+        localStorage.setItem('userPhoneNumber', 'null');
+        setShowMenu(false); // Close the menu
+        onLogout(); // Call the parent onLogout function
+    };
+
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedContactId, setSelectedContactId] = useState(null);
 
@@ -16,6 +43,26 @@ const ContactList = ({ contacts, onSelectContact }) => {
 
     return (
         <div className="contact-list">
+            <div className="sidebar-topper">
+                <span className="sidebar-title">Chats</span>
+                <div className="sidebar-topper-buttons">
+                    <button className="topper-button"><img src={addContactIcon} alt="Groups" className="sidebar-addContact-button-icon"/> </button>
+                    {/*<button className="topper-button">Btn 2</button>*/}
+                    <div className="menu-container" ref={menuRef}>
+                        <button className="menu-button" onClick={toggleMenu}>
+                            &#x22EE;
+                        </button>
+                        {showMenu && (
+                            <div className="menu">
+                                <ul>
+                                    <li onClick={handleLogout}>Logout</li>
+                                    {/*<li>{localStorage.userPhoneNumber}</li>*/}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
             <input
                 type="text"
                 placeholder="Search contacts..."

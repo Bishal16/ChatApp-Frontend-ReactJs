@@ -9,7 +9,7 @@
 }
 
 .sidebar-buttons {
-    width: 50px; /* Adjust width as needed */
+    width: 65px; /* Adjust width as needed */
     background-color: #f0f0f0;
     display: flex;
     flex-direction: column;
@@ -22,13 +22,17 @@
     border: none;
     background: none;
     cursor: pointer;
-    text-align: left;
-    width: 100%;
+    /*text-align: left;*/
+    /*width: 100%;*/
 }
 .sidebar-buttons button img{
     width: 25px;
     height: 25px;
     border-radius: 50%;
+}
+
+.sidebar-buttons button:nth-child(3) {
+    margin-top: auto; /* Push this button and any subsequent buttons to the bottom */
 }
 
 .sidebar-buttons button:hover {

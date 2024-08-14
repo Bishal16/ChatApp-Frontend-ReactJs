@@ -10,6 +10,9 @@ import {getUserById} from "../../api/api";
 const Sidebar = ({ contacts, onSelectContact }) => {
     const [activeSection, setActiveSection] = useState('contacts');
     const [imgUrl, setImgUrl] = useState(profileImage); // Default to profileImage
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
 
     // Fetch user profile image on component mount or other events
     useEffect(() => {
@@ -17,16 +20,28 @@ const Sidebar = ({ contacts, onSelectContact }) => {
             try {
                 const response = await getUserById(localStorage.getItem("userPhoneNumber")); // Replace 'your-username' with actual logic
                 const user = response.data;
-                console.log(user);
+                // console.log(user);
                 setImgUrl(user.imageUrl || profileImage); // Use default if image is not available
             } catch (error) {
                 console.error('Failed to fetch user image:', error);
-                // Optionally set a fallback image or handle the error
             }
         };
 
         fetchUserImage();
     }, []); // Empty dependency array to run only once on mount
+
+    useEffect(() => {
+        const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        setIsLoggedIn(loggedIn);
+    }, []);
+
+
+    const handleLogout = () => {
+        localStorage.setItem('isLoggedIn', 'false');
+        localStorage.setItem('userPhoneNumber', 'null');
+        setIsLoggedIn(false);
+        setActiveSection('contacts');
+    };
 
     const handleButtonClick = (section) => {
         setActiveSection(section);
@@ -38,18 +53,18 @@ const Sidebar = ({ contacts, onSelectContact }) => {
                 <button onClick={() => handleButtonClick('contacts')}>
                     <img src={messageIcon} alt="Chats" className="sidebar-button-icon"/>
                 </button>
+                <button onClick={() => handleButtonClick('groups')}>
+                    <img src={groupIcon} alt="Groups" className="sidebar-button-icon"/>
+                </button>
                 <button onClick={() => handleButtonClick('settings')}>
                     <img src={settingsIcon} alt="Settings" className="sidebar-button-icon"/>
                 </button>
                 <button onClick={() => handleButtonClick('profile')}>
                     <img src={imgUrl} alt="Profile" className="sidebar-button-icon"/>
                 </button>
-                <button onClick={() => handleButtonClick('groups')}>
-                    <img src={groupIcon} alt="Groups" className="sidebar-button-icon"/>
-                </button>
             </div>
             <div className="sidebar-content">
-                {activeSection === 'contacts' && <ContactList contacts={contacts} onSelectContact={onSelectContact}/>}
+                {activeSection === 'contacts' && <ContactList contacts={contacts} onSelectContact={onSelectContact} onLogout={handleLogout}/>}
                 {/* Render other sections here based on `activeSection` */}
                 {activeSection === 'settings' && <div>Settings Content</div>}
                 {activeSection === 'profile' && <div>Profile Content</div>}

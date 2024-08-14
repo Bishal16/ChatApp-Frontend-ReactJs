@@ -12,6 +12,44 @@
     background-color: rgba(234, 231, 231, 0.77);
 }
 
+.sidebar-topper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    /*border-bottom: 1px solid #ddd;*/
+    /*background-color: #f8f8f8;*/
+}
+
+.sidebar-title {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.sidebar-topper-buttons {
+    display: flex;
+}
+
+.topper-button {
+    margin: 10px;
+    padding: 0px 0px;
+    border: none;
+    /*background-color: #007bff;*/
+    /*color: white;*/
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.topper-button:hover {
+    background-color: #9b9fa5;
+}
+.sidebar-addContact-button-icon{
+    height: 25px;
+    width: 25px;
+    background-color: white;
+}
+
+
 
 .contact-item {
     display: flex;
