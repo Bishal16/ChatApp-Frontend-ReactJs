@@ -25,7 +25,6 @@ const ContactList = ({ contacts, onSelectContact, onLogout }) => {
     const handleLogout = () => {
         localStorage.setItem('isLoggedIn', 'false');
         localStorage.setItem('userPhoneNumber', 'null');
-        setShowMenu(false); // Close the menu
         onLogout(); // Call the parent onLogout function
     };
 
@@ -47,7 +46,7 @@ const ContactList = ({ contacts, onSelectContact, onLogout }) => {
                 <span className="sidebar-title">Chats</span>
                 <div className="sidebar-topper-buttons">
                     <button className="topper-button"><img src={addContactIcon} alt="Groups" className="sidebar-addContact-button-icon"/> </button>
-                    {/*<button className="topper-button">Btn 2</button>*/}
+
                     <div className="menu-container" ref={menuRef}>
                         <button className="menu-button" onClick={toggleMenu}>
                             &#x22EE;
@@ -61,6 +60,7 @@ const ContactList = ({ contacts, onSelectContact, onLogout }) => {
                             </div>
                         )}
                     </div>
+
                 </div>
             </div>
             <input

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Sidebar from "./components/sidebar/Sidebar";
-import ContactList from './components/sidebar/ContactList';
 import ChatWindow from './components/ChatWindow';
 import Placeholder from "./components/Placeholder-chatWindow";
 import MessageInput from './components/MessageInput';
@@ -107,7 +106,7 @@ const App = () => {
         {/*<div className="sidebar">*/}
         {/*  <ContactList contacts={contacts} onSelectContact={handleSelectContact}/>*/}
         {/*</div>*/}
-        <Sidebar contacts={contacts} onSelectContact={handleSelectContact}/>
+        <Sidebar contacts={contacts} onSelectContact={handleSelectContact} onLogout={handleLogout}/>
         <div className={`main ${selectedContact ? 'with-contact' : 'no-contact'}`}>
           {selectedContact ? (
               <>

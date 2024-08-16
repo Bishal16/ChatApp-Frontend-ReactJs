@@ -7,10 +7,9 @@ import groupIcon from '../../resources/icons/icon-group.png'
 import profileImage from '../../resources/photos/profile.jpg';
 import {getUserById} from "../../api/api";
 
-const Sidebar = ({ contacts, onSelectContact }) => {
+const Sidebar = ({ contacts, onSelectContact, onLogout }) => {
     const [activeSection, setActiveSection] = useState('contacts');
     const [imgUrl, setImgUrl] = useState(profileImage); // Default to profileImage
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
 
@@ -28,25 +27,11 @@ const Sidebar = ({ contacts, onSelectContact }) => {
         };
 
         fetchUserImage();
-    }, []); // Empty dependency array to run only once on mount
-
-    useEffect(() => {
-        const loggedIn = localStorage.getItem('isLoggedIn') === 'true';
-        setIsLoggedIn(loggedIn);
     }, []);
-
-
-    const handleLogout = () => {
-        localStorage.setItem('isLoggedIn', 'false');
-        localStorage.setItem('userPhoneNumber', 'null');
-        setIsLoggedIn(false);
-        setActiveSection('contacts');
-    };
 
     const handleButtonClick = (section) => {
         setActiveSection(section);
     };
-
     return (
         <div className="sidebar">
             <div className="sidebar-buttons">
@@ -64,8 +49,7 @@ const Sidebar = ({ contacts, onSelectContact }) => {
                 </button>
             </div>
             <div className="sidebar-content">
-                {activeSection === 'contacts' && <ContactList contacts={contacts} onSelectContact={onSelectContact} onLogout={handleLogout}/>}
-                {/* Render other sections here based on `activeSection` */}
+                {activeSection === 'contacts' && <ContactList contacts={contacts} onSelectContact={onSelectContact} onLogout={onLogout}/>}
                 {activeSection === 'settings' && <div>Settings Content</div>}
                 {activeSection === 'profile' && <div>Profile Content</div>}
                 {activeSection === 'groups' && <div>Groups Content</div>}

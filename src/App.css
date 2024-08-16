@@ -111,7 +111,7 @@
   scrollbar-color: #d9dcdb #f5f5f5; /* Thumb color and track color */
 }
 
-.sidebar {
+.sidebar-content  {
   scrollbar-width: thin; /* Makes the scrollbar thin */
   scrollbar-color: #d9dcdb #f5f5f5; /* Thumb color and track color */
 }

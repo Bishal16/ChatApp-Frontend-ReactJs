@@ -22,11 +22,6 @@ const ChatHeader = ({ contact, onLogout }) => {
         };
     }, []);
 
-    const handleLogout = () => {
-        localStorage.setItem('isLoggedIn', 'false');
-        localStorage.setItem('userPhoneNumber', 'null');
-        onLogout();
-    };
 
     return (
         <div className="chat-header">
@@ -35,6 +30,7 @@ const ChatHeader = ({ contact, onLogout }) => {
                 <div className="header-name">{contact.name}</div>
                 <span className="status">Active</span>
             </div>
+
             <div className="menu-container" ref={menuRef}>
                 <button className="menu-button" onClick={toggleMenu}>
                     &#x22EE;
@@ -42,12 +38,12 @@ const ChatHeader = ({ contact, onLogout }) => {
                 {showMenu && (
                     <div className="menu">
                         <ul>
-                            <li onClick={handleLogout}>Logout</li>
                             <li >{localStorage.userPhoneNumber}</li>
                         </ul>
                     </div>
                 )}
             </div>
+
         </div>
     );
 };
